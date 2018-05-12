@@ -75,3 +75,7 @@ table {
 .display-none {
     display: none;
 }
+
+.card {
+    border: 0px !important;
+}
