@@ -3,7 +3,7 @@ $(document).ready(loadDoc());
 function loadDoc() {
     const socket = io('https://myteamforcebot.herokuapp.com');
         socket.on('join', (user) => {
-           console.log(user);
+            console.log(user);
             spawnPlayerSingle(1);
         });
     var xhttp = new XMLHttpRequest();
@@ -16,15 +16,14 @@ function loadDoc() {
     xhttp.send();
 }
 
-var game = new Phaser.Game(window.innerWidth, window.innerHeight, Phaser.CANVAS, 'phaser-example', { preload: preload, create: create, update: update, render: render });
+var game = new Phaser.Game(window.innerWidth * 1.2, window.innerHeight * 1.2, Phaser.CANVAS, 'phaser-example', { preload: preload, create: create, update: update, render: render });
 
 var background;
 var balls;
 var ballsNumber = 80;
 
 function preload() {
-
-    game.load.image('bg', 'assets/bg.png');
+    
     game.load.image('team1', 'assets/team1.png');
     game.load.image('team2', 'assets/team2.png');
 
@@ -36,13 +35,13 @@ function preload() {
 
 
 function create() {
-
+    game.stage.backgroundColor = "#05081b";
     game.physics.startSystem(Phaser.Physics.BOX2D);
     game.physics.box2d.restitution = 0;
     game.physics.box2d.friction = 2;
+    game.world.setBounds(window.innerWidth * .1, window.innerHeight * .1,window.innerWidth * 1.2,window.innerHeight * 1.2);
+    console.log(game.world.bounds)
     game.physics.box2d.setBoundsToWorld();
-
-    background = game.add.tileSprite(0, 0, game.world.width, game.world.height, 'bg');
 
     balls = game.add.group();
     balls.enableBody = true;
@@ -80,14 +79,14 @@ function spawnPlayerInitial (playerCount) {
 
     if (playerCount % 2 == 0) {
         sprite = balls.create(
-            getRandomFloat(game.world.width * .85, game.world.width * .95),
+            getRandomFloat(game.world.width * .9, game.world.width * 1),
             getRandomFloat(game.world.height * .3, game.world.height * .7),
             'team1');
         sprite.scale.setTo(size,size)
         sprite.body.setCircle(20); // fix me
     } else {
         sprite = balls.create(
-            getRandomFloat(game.world.width * .05, game.world.width * .15),
+            getRandomFloat(0, game.world.width * .1),
             getRandomFloat(game.world.height * .3, game.world.height * .7), 'team2');
         sprite.scale.setTo(size,size)
         sprite.body.setCircle(17); // fix me
