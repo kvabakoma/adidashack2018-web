@@ -16,7 +16,7 @@ function loadDoc() {
     xhttp.send();
 }
 
-var game = new Phaser.Game(window.innerWidth * 1.2, window.innerHeight * 1.2, Phaser.CANVAS, 'phaser-example', { preload: preload, create: create, update: update, render: render });
+var game = new Phaser.Game(window.innerWidth * 1.1, window.innerHeight * 1.1, Phaser.CANVAS, 'phaser-example', { preload: preload, create: create, update: update, render: render });
 
 var background;
 var balls;
@@ -39,7 +39,7 @@ function create() {
     game.physics.startSystem(Phaser.Physics.BOX2D);
     game.physics.box2d.restitution = 0;
     game.physics.box2d.friction = 2;
-    game.world.setBounds(window.innerWidth * .1, window.innerHeight * .1,window.innerWidth * 1.2,window.innerHeight * 1.2);
+    game.world.setBounds(window.innerWidth * .05, window.innerHeight * .05,window.innerWidth * 1.1,window.innerHeight * 1.1);
     console.log(game.world.bounds)
     game.physics.box2d.setBoundsToWorld();
 
@@ -93,9 +93,7 @@ function spawnPlayerInitial (playerCount) {
     }
 
     if (balls.children.length < ballsNumber) {
-        //setTimeout(function() {
         spawnPlayerInitial(balls.children.length);
-        // },1);
     } else {
         setTimeout(function() {
             for (var i = 0; i < balls.children.length; i++) {
@@ -116,10 +114,9 @@ function spawnPlayerSingle (team) {
     var size = getRandomFloat(.1,.2);
     var sprite;
 
-
     if (team % 2 == 0) {
         sprite = balls.create(
-            getRandomFloat(game.world.width * .85, game.world.width * .95),
+            getRandomFloat(game.world.width * .9, game.world.width * 1),
             getRandomFloat(game.world.height * .3, game.world.height * .7),
             'team1');
         sprite.scale.setTo(size,size)
@@ -127,7 +124,7 @@ function spawnPlayerSingle (team) {
         sprite.body.velocity.x = Math.random()*-1000;
     } else {
         sprite = balls.create(
-            getRandomFloat(game.world.width * .05, game.world.width * .15),
+            getRandomFloat(0, game.world.width * .1),
             getRandomFloat(game.world.height * .3, game.world.height * .7), 'team2');
         sprite.scale.setTo(size,size)
         sprite.body.setCircle(17); // fix me
