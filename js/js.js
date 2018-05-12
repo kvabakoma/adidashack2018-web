@@ -37,9 +37,9 @@ function preload() {
     // bmd.ctx.fill();
 
     team1 = game.add.bitmapData(300, 300);
-    team1.circle(150, 150, 150, '#FC4329');
+    team1.circle(150, 150, 150, config.team1color);
     team2 = game.add.bitmapData(300, 300);
-    team2.circle(150, 150, 150, '#FFDA00');
+    team2.circle(150, 150, 150, config.team2color);
 
     // SHOW FPS
     game.time.advancedTiming = true;
@@ -47,8 +47,8 @@ function preload() {
 }
 
 function create() {
-    game.stage.backgroundColor = "#43287D";
-    // FC4329
+    game.stage.backgroundColor = config.backgroundColor;
+    // 592986
     // FFDA00
     game.physics.startSystem(Phaser.Physics.BOX2D);
     game.physics.box2d.restitution = 0;
@@ -73,6 +73,8 @@ function update() {
 
     key2 = game.input.keyboard.addKey(Phaser.Keyboard.ONE);
     key2.onDown.add(spawnPlayerSingle);
+
+    console.log(balls.children[1].body.velocity.x)
 }
 
 function render() {
