@@ -1,4 +1,3 @@
-import "js/phaser";
 $(document).ready(loadDoc());
 
 function loadDoc() {
@@ -34,8 +33,6 @@ function UpdateBulgariaAvatar (userAvatarUrl) {
 
 function UpdateSpainAvatar () {
     $('team2').css("background-image", userAvatarUrl);
-=======
-    xhttp.send();
 }
 
 var game = new Phaser.Game(window.innerWidth * 1.1, window.innerHeight * 1.1, Phaser.CANVAS, 'phaser-example', { preload: preload, create: create, update: update, render: render });
@@ -95,8 +92,7 @@ function update() {
 
     key2 = game.input.keyboard.addKey(Phaser.Keyboard.ONE);
     key2.onDown.add(spawnPlayerSingle);
-
-    console.log(balls.children[1].body.velocity.x)
+    
 }
 
 function render() {
@@ -177,5 +173,4 @@ function spawnPlayerSingle (team) {
             }
         },50);
     }
->>>>>>> 6114a590b5dc24b733d4e45fa437ec18880cff0a
 }
