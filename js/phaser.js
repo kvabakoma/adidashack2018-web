@@ -2,7 +2,7 @@ var game = new Phaser.Game(window.innerWidth * 1.1, window.innerHeight * 1.1, Ph
 
 var background;
 var balls;
-var ballsNumber = 80;
+var ballsNumber = 50;
 var gameHasStarted = false;
 var team1, team2;
 
@@ -43,7 +43,6 @@ function create() {
     balls.physicsBodyType = Phaser.Physics.BOX2D;
 
     spawnPlayerInitial(0);
-
 }
 
 function update() {
@@ -101,6 +100,12 @@ function spawnPlayerInitial (playerCount) {
             }
             spawnPlayerSingle(1)
             gameHasStarted = true;
+
+            // setTimeout(function() {
+            //      game.physics.box2d.gravity.y = -200;
+            //     // game.physics.box2d.gravity.x = 250;
+            // },5000);
+
         },1000);
 
     }
