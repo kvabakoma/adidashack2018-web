@@ -48,3 +48,15 @@ table {
     border-collapse: collapse;
     border-spacing: 0;
 }
+
+.team1 {
+    position: fixed;
+    background: yellow;
+    width: 500px;
+    height: 500px;
+    opacity: 0.4;
+}
+
+.team2 {
+    position: absolute;
+}
