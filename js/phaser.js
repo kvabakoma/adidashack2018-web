@@ -2,7 +2,7 @@ var game = new Phaser.Game(window.innerWidth * 1.1, window.innerHeight * 1.1, Ph
 
 var background;
 var balls;
-var ballsNumber = 80;
+var ballsNumber = 50;
 var gameHasStarted = false;
 var team1, team2;
 
