@@ -1,16 +1,199 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="UTF-8" />
+    <title>#adidasmyteamforce</title>
+    <script src="js/phaser.2.2.2.box2d.min.js"></script>
+    <style>
+        body, html {
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+            padding: 0px;
+            margin: 0px !important;
+        }
+        html, body, div, span, applet, object, iframe,
+        h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+        a, abbr, acronym, address, big, cite, code,
+        del, dfn, em, img, ins, kbd, q, s, samp,
+        small, strike, strong, sub, sup, tt, var,
+        b, u, i, center,
+        dl, dt, dd, ol, ul, li,
+        fieldset, form, label, legend,
+        table, caption, tbody, tfoot, thead, tr, th, td,
+        article, aside, canvas, details, embed, 
+        figure, figcaption, footer, header, hgroup, 
+        menu, nav, output, ruby, section, summary,
+        time, mark, audio, video {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            font-size: 100%;
+            font: inherit;
+            vertical-align: baseline;
+        }
+        /* HTML5 display-role reset for older browsers */
+        article, aside, details, figcaption, figure, 
+        footer, header, hgroup, menu, nav, section {
+            display: block;
+        }
+        body {
+            line-height: 1;
+        }
+        ol, ul {
+            list-style: none;
+        }
+        blockquote, q {
+            quotes: none;
+        }
+        blockquote:before, blockquote:after,
+        q:before, q:after {
+            content: '';
+            content: none;
+        }
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+    </style>
 </head>
 <body>
-<button type="button" onclick="loadDoc()">Change Content</button>
-<textarea id="demo"></textarea>
-<script
-        src="https://code.jquery.com/jquery-3.3.1.min.js"
-        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-        crossorigin="anonymous"></script>
-<script src="js/js.js"></script>
-</body>
-</html>
+    
+    <script type="text/javascript">
+        
+        window.onload = function() {
+            
+            var game = new Phaser.Game(window.innerWidth, window.innerHeight, Phaser.CANVAS, 'phaser-example', { preload: preload, create: create, update: update, render: render });
+            
+            var background;
+            var balls;  
+            var ballsNumber = 80;
+            
+            function preload() {
+                
+                game.load.image('bg', 'assets/bg.png');
+                game.load.image('team1', 'assets/team1.png');
+                game.load.image('team2', 'assets/team2.png');
+                
+                // SHOW FPS
+                game.time.advancedTiming = true;
+                
+            }
+            
+            
+            
+            function create() {
+                
+                game.physics.startSystem(Phaser.Physics.BOX2D);
+                game.physics.box2d.restitution = 0;
+                game.physics.box2d.friction = 2;    
+                game.physics.box2d.setBoundsToWorld();
+                
+                background = game.add.tileSprite(0, 0, game.world.width, game.world.height, 'bg');
+                
+                balls = game.add.group();
+                balls.enableBody = true;
+                balls.physicsBodyType = Phaser.Physics.BOX2D;               
+                
+                spawnPlayerInitial(0);
+                
+            }
+            
+            function update() {
+                
+                //ship.body.setZeroVelocity();   
+                
+                key1 = game.input.keyboard.addKey(Phaser.Keyboard.ONE);
+                key1.onDown.add(spawnPlayerSingle);
+                
+                key2 = game.input.keyboard.addKey(Phaser.Keyboard.ONE);
+                key2.onDown.add(spawnPlayerSingle);     
+                
+            }
+            
+            function render() {
+                
+                //game.debug.box2dWorld();
+                game.debug.text(game.time.fps, 2, 14, "#00ff00");
+            }
+            
+            function getRandomFloat(min, max) {
+                return Math.random() * (max - min) + min;
+            }
+            
+            function spawnPlayerInitial (playerCount) {
+                var size = getRandomFloat(.1,.2);
+                var sprite;
+                
+                if (playerCount % 2 == 0) {
+                    sprite = balls.create(
+                    getRandomFloat(game.world.width * .85, game.world.width * .95), 
+                    getRandomFloat(game.world.height * .3, game.world.height * .7),
+                    'team1');
+                    sprite.scale.setTo(size,size)
+                    sprite.body.setCircle(20); // fix me       
+                } else {
+                    sprite = balls.create(
+                    getRandomFloat(game.world.width * .05, game.world.width * .15), 
+                    getRandomFloat(game.world.height * .3, game.world.height * .7), 'team2');
+                    sprite.scale.setTo(size,size)
+                    sprite.body.setCircle(17); // fix me
+                }
+                
+                if (balls.children.length < ballsNumber) {
+                    //setTimeout(function() {
+                        spawnPlayerInitial(balls.children.length);
+                        // },1);
+                    } else {
+                        setTimeout(function() {
+                            for (var i = 0; i < balls.children.length; i++) {
+                                if ( i % 2 == 0) {
+                                    balls.children[i].body.velocity.x = Math.random()*-1000;
+                                } else {
+                                    // balls.children[i].body.velocity.x = Math.random()*1000;
+                                    balls.children[i].body.velocity.x = 500;
+                                }                                
+                            }
+                            spawnPlayerSingle(1)
+                        },1000);
+                        
+                    }
+                }
+                
+                function spawnPlayerSingle (team) {
+                    var size = getRandomFloat(.1,.2);
+                    var sprite;                    
+                    
+                    if (team % 2 == 0) {
+                        sprite = balls.create(
+                        getRandomFloat(game.world.width * .85, game.world.width * .95), 
+                        getRandomFloat(game.world.height * .3, game.world.height * .7),
+                        'team1');
+                        sprite.scale.setTo(size,size)
+                        sprite.body.setCircle(20); // fix me  
+                        sprite.body.velocity.x = Math.random()*-1000;     
+                    } else {
+                        sprite = balls.create(
+                        getRandomFloat(game.world.width * .05, game.world.width * .15), 
+                        getRandomFloat(game.world.height * .3, game.world.height * .7), 'team2');
+                        sprite.scale.setTo(size,size)
+                        sprite.body.setCircle(17); // fix me
+                        sprite.body.velocity.x = 500;
+                    }
+                    
+                    if (balls.children.length < ballsNumber * 1.8) {
+                        setTimeout(function() {
+                            if (team % 2 == 0) {
+                                spawnPlayerSingle(1);
+                            } else {
+                                spawnPlayerSingle(2);
+                            }
+                        },50);
+                    }
+                }
+            };
+            
+        </script>
+        
+    </body>
+    </html>
