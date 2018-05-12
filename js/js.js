@@ -10,7 +10,7 @@ function loadDoc() {
                     UpdateBulgariaAvatar(user.avatar);
                     break;
                 case 'Spain':
-                    UpdateSpainAvatar();
+                    UpdateSpainAvatar(user.avatar);
                     break;
             }
         });
@@ -31,8 +31,8 @@ function UpdateBulgariaAvatar (userAvatarUrl) {
     $('#team1').css("background-image", `url(${userAvatarUrl})`);
 }
 
-function UpdateSpainAvatar () {
-    $('team2').css("background-image", userAvatarUrl);
+function UpdateSpainAvatar (userAvatarUrl) {
+    $('#team2').css("background-image", `url(${userAvatarUrl})`);
 }
 
 var game = new Phaser.Game(window.innerWidth * 1.1, window.innerHeight * 1.1, Phaser.CANVAS, 'phaser-example', { preload: preload, create: create, update: update, render: render });
@@ -92,7 +92,7 @@ function update() {
 
     key2 = game.input.keyboard.addKey(Phaser.Keyboard.ONE);
     key2.onDown.add(spawnPlayerSingle);
-    
+
 }
 
 function render() {
