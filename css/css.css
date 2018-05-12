@@ -51,12 +51,20 @@ table {
 
 .team1 {
     position: fixed;
-    background: yellow;
-    width: 500px;
-    height: 500px;
+    left: 0px;
+    top: 25%;
+    height: 50%;
+    background: no-repeat;
+    min-width: 250px;
     opacity: 0.4;
 }
 
 .team2 {
-    position: absolute;
+    position: fixed;
+    right: 0px;
+    top: 25%;
+    height: 50%;
+    background: no-repeat;
+    min-width: 250px;
+    opacity: 0.4;
 }
