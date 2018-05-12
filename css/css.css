@@ -56,7 +56,6 @@ table {
     height: 50%;
     background: no-repeat;
     min-width: 250px;
-    opacity: 0.4;
 }
 
 .team2 {
@@ -66,5 +65,13 @@ table {
     height: 50%;
     background: no-repeat;
     min-width: 250px;
-    opacity: 0.4;
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+}
+
+.display-none {
+    display: none;
 }

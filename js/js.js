@@ -7,10 +7,10 @@ function loadDoc() {
             spawnPlayerSingle(1);
             switch (user.team) {
                 case 'Bulgaria':
-                    UpdateBulgariaAvatar(user.avatar);
+                    UpdateBulgariaAvatar(user);
                     break;
                 case 'Spain':
-                    UpdateSpainAvatar(user.avatar);
+                    UpdateSpainAvatar(user);
                     break;
             }
         });
@@ -26,11 +26,14 @@ function loadDoc() {
 }
 
 
-function UpdateBulgariaAvatar (userAvatarUrl) {
-    console.log(userAvatarUrl);
-    $('#team1').css("background-image", `url(${userAvatarUrl})`);
+function UpdateBulgariaAvatar (user) {
+    $('#team1').attr("src", user.avatar);
+    $('#titleTeam1').text(user.name);
+    $('#team1CardBody').show();
 }
 
-function UpdateSpainAvatar (userAvatarUrl) {
-    $('#team2').css("background-image", `url(${userAvatarUrl})`);
+function UpdateSpainAvatar (user) {
+    $('#team2').attr("src", user.avatar);
+    $('#titleTeam2').text(user.name);
+    $('#team2CardBody').show();
 }
