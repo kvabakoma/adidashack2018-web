@@ -21,26 +21,39 @@ var game = new Phaser.Game(window.innerWidth * 1.1, window.innerHeight * 1.1, Ph
 var background;
 var balls;
 var ballsNumber = 80;
+var gameHasStarted = false;
+var team1, team2;
 
 function preload() {
     
-    game.load.image('team1', 'assets/team1.png');
-    game.load.image('team2', 'assets/team2.png');
+    // game.load.image('team1', 'assets/team1.png');
+    // game.load.image('team2', 'assets/team2.png');
+
+    // var bmd = game.add.bitmapData(128,128);
+    // // draw to the canvas context like normal
+    // bmd.ctx.beginPath();
+    // bmd.ctx.rect(0,0,128,128);
+    // bmd.ctx.fillStyle = '#ff0000';
+    // bmd.ctx.fill();
+
+    team1 = game.add.bitmapData(300, 300);
+    team1.circle(150, 150, 150, '#FC4329');
+    team2 = game.add.bitmapData(300, 300);
+    team2.circle(150, 150, 150, '#FFDA00');
 
     // SHOW FPS
     game.time.advancedTiming = true;
 
 }
 
-
-
 function create() {
-    game.stage.backgroundColor = "#05081b";
+    game.stage.backgroundColor = "#43287D";
+    // FC4329
+    // FFDA00
     game.physics.startSystem(Phaser.Physics.BOX2D);
     game.physics.box2d.restitution = 0;
     game.physics.box2d.friction = 2;
     game.world.setBounds(window.innerWidth * .05, window.innerHeight * .05,window.innerWidth * 1.1,window.innerHeight * 1.1);
-    console.log(game.world.bounds)
     game.physics.box2d.setBoundsToWorld();
 
     balls = game.add.group();
@@ -60,7 +73,6 @@ function update() {
 
     key2 = game.input.keyboard.addKey(Phaser.Keyboard.ONE);
     key2.onDown.add(spawnPlayerSingle);
-
 }
 
 function render() {
@@ -81,13 +93,13 @@ function spawnPlayerInitial (playerCount) {
         sprite = balls.create(
             getRandomFloat(game.world.width * .9, game.world.width * 1),
             getRandomFloat(game.world.height * .3, game.world.height * .7),
-            'team1');
+            team1);
         sprite.scale.setTo(size,size)
         sprite.body.setCircle(20); // fix me
     } else {
         sprite = balls.create(
             getRandomFloat(0, game.world.width * .1),
-            getRandomFloat(game.world.height * .3, game.world.height * .7), 'team2');
+            getRandomFloat(game.world.height * .3, game.world.height * .7), team2);
         sprite.scale.setTo(size,size)
         sprite.body.setCircle(17); // fix me
     }
@@ -105,6 +117,7 @@ function spawnPlayerInitial (playerCount) {
                 }
             }
             spawnPlayerSingle(1)
+            gameHasStarted = true;
         },1000);
 
     }
@@ -118,14 +131,14 @@ function spawnPlayerSingle (team) {
         sprite = balls.create(
             getRandomFloat(game.world.width * .9, game.world.width * 1),
             getRandomFloat(game.world.height * .3, game.world.height * .7),
-            'team1');
+            team1);
         sprite.scale.setTo(size,size)
         sprite.body.setCircle(20); // fix me
         sprite.body.velocity.x = Math.random()*-1000;
     } else {
         sprite = balls.create(
             getRandomFloat(0, game.world.width * .1),
-            getRandomFloat(game.world.height * .3, game.world.height * .7), 'team2');
+            getRandomFloat(game.world.height * .3, game.world.height * .7), team2);
         sprite.scale.setTo(size,size)
         sprite.body.setCircle(17); // fix me
         sprite.body.velocity.x = 500;
