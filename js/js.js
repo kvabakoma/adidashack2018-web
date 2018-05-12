@@ -117,6 +117,7 @@ function spawnPlayerSingle (team) {
     var size = getRandomFloat(.1,.2);
     var sprite;
 
+
     if (team % 2 == 0) {
         sprite = balls.create(
             getRandomFloat(game.world.width * .85, game.world.width * .95),
