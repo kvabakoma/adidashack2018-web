@@ -1,6 +1,11 @@
 $(document).ready(loadDoc());
 
 function loadDoc() {
+    const socket = io('https://myteamforcebot.herokuapp.com');
+        socket.on('join', (user) => {
+           console.log(user);
+           draw();
+        });
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4) {
@@ -10,4 +15,9 @@ function loadDoc() {
     };
     xhttp.open("GET", "https://myteamforcebot.herokuapp.com/", true);
     xhttp.send();
+}
+
+
+function draw (){
+    console.log('draw');
 }
