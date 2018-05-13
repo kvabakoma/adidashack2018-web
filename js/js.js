@@ -6,16 +6,21 @@ function loadDoc() {
             console.log(user);
             //spawnPlayerSingle(user.team);
             switch (user.team) {
-                case 'Bulgaria':
+                case 'Spain':
                     UpdateBulgariaAvatar(user);
                     spawnPlayerSingle(1);
                     break;
-                case 'Spain':
+                case 'Netherlands':
                     UpdateSpainAvatar(user);
                     spawnPlayerSingle(2);
                     break;
             }
         });
+
+    socket.on('team-stats', (stats) => {
+        updateStats(stats);
+        console.log(stats);
+    });
     /*var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4) {
@@ -27,6 +32,10 @@ function loadDoc() {
     xhttp.send();*/
 }
 
+function updateStats(stats) {
+    $('#fans1count').text(stats.spain);
+    $('#fans2count').text(stats.netherlands);
+}
 
 function UpdateBulgariaAvatar (user) {
     $('#team1').attr("src", user.avatar);
