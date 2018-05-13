@@ -14,7 +14,7 @@ function preload() {
     team2.circle(150, 150, 150, config.team2color);
     
     // SHOW FPS
-    game.time.advancedTiming = true;
+    //game.time.advancedTiming = true;
     
 }
 
@@ -49,7 +49,7 @@ function update() {
 function render() {
     
     //game.debug.box2dWorld();
-    game.debug.text(game.time.fps, 2, 14, "#00ff00");
+    //game.debug.text(game.time.fps, 2, 14, "#00ff00");
 }
 
 function getRandomFloat(min, max) {
