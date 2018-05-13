@@ -49,7 +49,6 @@ function UpdateSpainAvatar (user) {
     $('#team2CardBody').show();
     $('#team2cardcontainer').css('transform', 'translateX(-150px)');
     $('#team2cardcontainer').css('transition', '0.3s ease all');
-<<<<<<< HEAD
 
     setTimeout(function(){
         $('#team2cardcontainer').css('transform', 'translateX(150px)');
@@ -57,14 +56,12 @@ function UpdateSpainAvatar (user) {
         $('#titleTeam2').text('');
     }, 1500);
 }
-=======
-}
 
 $('#endscreen').hide();
 setTimeout(function() {
     $('#endscreen').show();
-}, 5000)
+}, 5000);
 // function ShowEndScreen() {
 //     $('#endscreen').show();
 // }
->>>>>>> a1afada562402a32c54e6b9f37a44c7920d64965
+
