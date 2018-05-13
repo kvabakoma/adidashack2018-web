@@ -44,3 +44,11 @@ function UpdateSpainAvatar (user) {
     $('#team2cardcontainer').css('transform', 'translateX(-150px)');
     $('#team2cardcontainer').css('transition', '0.3s ease all');
 }
+
+$('#endscreen').hide();
+setTimeout(function() {
+    $('#endscreen').show();
+}, 5000)
+// function ShowEndScreen() {
+//     $('#endscreen').show();
+// }
