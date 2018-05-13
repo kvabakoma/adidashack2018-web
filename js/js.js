@@ -72,6 +72,12 @@ $('#endscreen').hide();
 $('#startscreen').click(startGame);
 
 $('#btn-order').click(function(){
-    $('#tshirt').show();
+    $('#endscreen').hide();
+    $('#tshirt').fadeIn();
+});
+
+$('#btn-share').click(function(){
+    $('#endscreen').hide();
+    $('#ishare').fadeIn();
 });
 
