@@ -21,6 +21,7 @@ function loadDoc() {
         updateStats(stats);
         console.log(stats);
     });
+
     /*var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4) {
