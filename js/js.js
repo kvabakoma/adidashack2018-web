@@ -6,11 +6,11 @@ function loadDoc() {
             console.log(user);
             //spawnPlayerSingle(user.team);
             switch (user.team) {
-                case 'Bulgaria':
+                case 'Spain':
                     UpdateBulgariaAvatar(user);
                     spawnPlayerSingle(1);
                     break;
-                case 'Spain':
+                case 'Netherlands':
                     UpdateSpainAvatar(user);
                     spawnPlayerSingle(2);
                     break;
