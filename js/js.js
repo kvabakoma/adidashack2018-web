@@ -4,13 +4,15 @@ function loadDoc() {
     const socket = io('https://myteamforcebot.herokuapp.com');
         socket.on('join', (user) => {
             console.log(user);
-            spawnPlayerSingle(1);
+            //spawnPlayerSingle(user.team);
             switch (user.team) {
                 case 'Bulgaria':
                     UpdateBulgariaAvatar(user);
+                    spawnPlayerSingle(1);
                     break;
                 case 'Spain':
                     UpdateSpainAvatar(user);
+                    spawnPlayerSingle(2);
                     break;
             }
         });
