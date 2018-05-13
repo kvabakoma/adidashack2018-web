@@ -53,18 +53,20 @@ table {
     position: fixed;
     left: 0px;
     top: 25%;
-    height: 50%;
+    height: 25%;
     background: no-repeat;
-    min-width: 250px;
+    min-width: 150px;
+    max-width: 150px;
 }
 
 .team2 {
     position: fixed;
     right: 0px;
     top: 25%;
-    height: 50%;
+    height: 25%;
     background: no-repeat;
-    min-width: 250px;
+    min-width: 150px;
+    max-width: 150px;
 }
 
 .image {
@@ -78,4 +80,67 @@ table {
 
 .card {
     border: 0px !important;
+    background-color: #000 !important;
+    color: #fff;
+}
+
+#footer {
+    background-color: #000;
+    color: #fff;
+    padding-left: 20px;
+    position: fixed;
+    bottom: 0px;
+    left:0px;
+    right:0px;
+    width: 100%;
+}
+
+#footer a {
+    text-decoration: none;
+    color: #fff;
+}
+
+#fans-container, #fans1, #fans2 {
+    font-weight: bold;
+}
+
+#endscreen {    
+    position: fixed;
+    height: 100vh;
+    padding: 20vh;
+    display: none;
+}
+
+#logo {
+    max-width: 60%;
+    height: auto;
+    padding-bottom: 10%;
+}
+
+.image-gaden {
+    height: 3.5em;
+    width: auto;
+    padding-bottom: 1em;
+}
+
+@media only screen and (max-device-width: 1024px) {
+    #footer {
+        font-size: 2em;
+        text-align: center;
+    }
+    #fans-container {
+        display: block;
+    }
+    #endscreen { 
+        padding: 10vh;
+    }
+    #logo {
+        max-width: 80%;
+        padding-top: 20vh;
+    }
+    .image-gaden {
+        height: 7em;
+        padding-bottom: 2em;
+    }
+
 }
