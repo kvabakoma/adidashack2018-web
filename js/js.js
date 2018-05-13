@@ -71,3 +71,7 @@ $('#endscreen').hide();
 
 $('#startscreen').click(startGame);
 
+$('#btn-order').click(function(){
+    $('#tshirt').show();
+});
+

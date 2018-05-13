@@ -129,6 +129,19 @@ table {
     display: none;
 }
 
+#tshirt {
+    position: fixed;
+    height: 100vh;
+    padding: 10vh;
+    display: none;
+}
+
+#tshirt-img {
+    max-width: 50%;
+    height: auto;
+    padding-bottom: 10%;
+}
+
 #logo {
     max-width: 60%;
     height: auto;

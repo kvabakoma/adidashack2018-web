@@ -8,7 +8,7 @@ var team1, team2;
 
 function preload() {
     
-    game.load.image('you', 'assets/maybeyou.png');
+    game.load.image('you', 'assets/maybeyoutoo.png');
     team1 = game.add.bitmapData(300, 300);
     team1.circle(150, 150, 150, config.team1color);
     team2 = game.add.bitmapData(300, 300);
@@ -80,11 +80,14 @@ function spawnPlayerInitial (playerCount) {
             if (balls.children.length < ballsNumber) {
                 spawnPlayerInitial(balls.children.length);
             } 
-        }
+        }        
         
         function startGame() {       
             
             $('#startscreen').hide();
+
+            balls.children[balls.children.length -2].addChild(game.make.sprite(-800, -80, 'you'));
+            balls.children[balls.children.length -2].scale.setTo(.2,.2);
             
             setTimeout(function() {
                 for (var i = 0; i < balls.children.length; i++) {
@@ -109,18 +112,13 @@ function spawnPlayerInitial (playerCount) {
                 GameOver();
             }, 5000)
         }
-
+        
         function GameOver() {
             $('#endscreen').show();
             game.time.slowMotion = 3;
-
-            // balls.children[balls.children.length-1].body.static = true;
-            balls.children[balls.children.length-1].body.angularVelocity = 0;
-            balls.children[balls.children.length-1].addChild(game.make.sprite(-800, -300, 'you'));
-            console.log(balls.children[balls.children.length-1].body)
-
+            
             for (var i = 0; i<balls.children.length; i++) {
-
+                
                 //maybeyou.png
             }
         }
