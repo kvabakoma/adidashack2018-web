@@ -35,6 +35,12 @@ function UpdateBulgariaAvatar (user) {
     $('#team1cardcontainer').css('transform', 'translateX(0px)');
     $('#team1cardcontainer').css('transition', '0.3s ease all');
 
+    setTimeout(function(){
+        $('#team1cardcontainer').css('transform', 'translateX(-150px)');
+        $('#team1cardcontainer').css('transition', '0.3s ease-out');
+        $('#titleTeam1').text('');
+    }, 1500);
+
 }
 
 function UpdateSpainAvatar (user) {
@@ -43,4 +49,10 @@ function UpdateSpainAvatar (user) {
     $('#team2CardBody').show();
     $('#team2cardcontainer').css('transform', 'translateX(-150px)');
     $('#team2cardcontainer').css('transition', '0.3s ease all');
+
+    setTimeout(function(){
+        $('#team2cardcontainer').css('transform', 'translateX(150px)');
+        $('#team2cardcontainer').css('transition', '0.3s ease-out');
+        $('#titleTeam2').text('');
+    }, 1500);
 }
