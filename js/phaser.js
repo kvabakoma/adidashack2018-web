@@ -8,6 +8,7 @@ var team1, team2;
 
 function preload() {
     
+    game.load.image('you', 'assets/maybeyou.png');
     team1 = game.add.bitmapData(300, 300);
     team1.circle(150, 150, 150, config.team1color);
     team2 = game.add.bitmapData(300, 300);
@@ -70,33 +71,54 @@ function spawnPlayerInitial (playerCount) {
         } else {
             sprite = balls.create(
                 getRandomFloat(0, game.world.width * .1),
-                getRandomFloat(game.world.height * .3, game.world.height * .7), team2);
+                getRandomFloat(game.world.height * .35, game.world.height * .75), team2);
                 sprite.scale.setTo(size,size)
                 sprite.body.setCircle(17); // fix me
             }
             
             if (balls.children.length < ballsNumber) {
                 spawnPlayerInitial(balls.children.length);
-            } else {
-                setTimeout(function() {
-                    for (var i = 0; i < balls.children.length; i++) {
-                        if ( i % 2 == 0) {
-                            balls.children[i].body.velocity.x = Math.random()*-1000;
-                        } else {
-                            // balls.children[i].body.velocity.x = Math.random()*1000;
-                            balls.children[i].body.velocity.x = 500;
-                        }
+            } 
+        }
+        
+        function startGame() {       
+            
+            $('#startscreen').hide();
+            
+            setTimeout(function() {
+                for (var i = 0; i < balls.children.length; i++) {
+                    if ( i % 2 == 0) {
+                        balls.children[i].body.velocity.x = Math.random()*-1000;
+                    } else {
+                        // balls.children[i].body.velocity.x = Math.random()*1000;
+                        balls.children[i].body.velocity.x = 500;
                     }
-                    spawnPlayerSingle(1)
-                    gameHasStarted = true;
-                    
-                    // setTimeout(function() {
-                    //      game.physics.box2d.gravity.y = -200;
-                    //     // game.physics.box2d.gravity.x = 250;
-                    // },5000);
-                    
-                },1000);
+                }
+                spawnPlayerSingle(1)
+                gameHasStarted = true;
                 
+                // setTimeout(function() {
+                //      game.physics.box2d.gravity.y = -200;
+                //     // game.physics.box2d.gravity.x = 250;
+                // },5000);
+                
+            },100);
+            
+            setTimeout(function() {
+                GameOver();
+            }, 5000)
+        }
+
+        function GameOver() {
+            $('#endscreen').show();
+            game.time.slowMotion = 3;
+
+            balls.children[balls.children.length-1].body.setZeroVelocity();
+            balls.children[balls.children.length-1].addChild(game.make.sprite(0, 0, 'you'));
+
+            for (var i = 0; i<balls.children.length; i++) {
+
+                //maybeyou.png
             }
         }
         
@@ -111,7 +133,7 @@ function spawnPlayerInitial (playerCount) {
                     team1);
                     sprite.scale.setTo(size,size)
                     sprite.body.setCircle(20); // fix me
-                    sprite.body.velocity.x = Math.random()*-1000;
+                    sprite.body.velocity.x = Math.random()*-1400;
                 } else {
                     sprite = balls.create(
                         getRandomFloat(0, game.world.width * .1),

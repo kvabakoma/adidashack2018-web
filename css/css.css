@@ -116,6 +116,12 @@ table {
     font-weight: bold;
 }
 
+#startscreen {    
+    position: fixed;
+    height: 100vh;
+    padding: 20vh;
+}
+
 #endscreen {    
     position: fixed;
     height: 100vh;
