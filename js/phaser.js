@@ -25,6 +25,7 @@ function create() {
     // FFDA00
     game.physics.startSystem(Phaser.Physics.BOX2D);
     game.physics.box2d.restitution = 0;
+    game.physics.box2d.friction = 0.5;
     game.world.setBounds(window.innerWidth * .05, window.innerHeight * .05,window.innerWidth * 1.1,window.innerHeight * 1.1);
     game.physics.box2d.setBoundsToWorld();
     
@@ -113,8 +114,10 @@ function spawnPlayerInitial (playerCount) {
             $('#endscreen').show();
             game.time.slowMotion = 3;
 
-            balls.children[balls.children.length-1].body.setZeroVelocity();
-            balls.children[balls.children.length-1].addChild(game.make.sprite(0, 0, 'you'));
+            // balls.children[balls.children.length-1].body.static = true;
+            balls.children[balls.children.length-1].body.angularVelocity = 0;
+            balls.children[balls.children.length-1].addChild(game.make.sprite(-800, -300, 'you'));
+            console.log(balls.children[balls.children.length-1].body)
 
             for (var i = 0; i<balls.children.length; i++) {
 
