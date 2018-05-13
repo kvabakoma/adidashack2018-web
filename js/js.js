@@ -68,10 +68,6 @@ function UpdateSpainAvatar (user) {
 }
 
 $('#endscreen').hide();
-setTimeout(function() {
-    $('#endscreen').show();
-}, 5000);
-// function ShowEndScreen() {
-//     $('#endscreen').show();
-// }
+
+$('#startscreen').click(startGame);
 
